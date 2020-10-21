@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Flip the div</title>
+    <meta name="description" content="">
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <style>
+        .panel {
+            margin: 0 auto;
+            width: 130px;
+            height: 130px;
+            position: relative;
+            font-size: .8em;
+            -webkit-perspective: 600px;
+            -moz-perspective: 600px;
+            border: inset 10px grey;
+        }
+
+        /* -- make sure to declare a default for every property that you want animated -- */
+        /* -- general styles, including Y axis rotation -- */
+        .panel .front {
+            position: absolute;
+            top: 0;
+            z-index: 900;
+            width: inherit;
+            height: inherit;
+            text-align: center;
+            -webkit-transform: rotateX(0deg) rotateY(0deg);
+            -webkit-transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+            -moz-transform: rotateX(0deg) rotateY(0deg);
+            -moz-transform-style: preserve-3d;
+            -moz-backface-visibility: hidden;
+            /* -- transition is the magic sauce for animation -- */
+            -o-transition: all 1s linear;
+            -ms-transition: all 1s linear;
+            -moz-transition: all 1s linear;
+            -webkit-transition: all 1s linear;
+            transition: all 1s linear;
+        }
+
+        .panel.flip .front {
+            z-index: 900;
+            -webkit-transform: rotatex(180deg);
+            -moz-transform: rotatex(180deg);
+        }
+
+        .panel .back {
+            position: absolute;
+            top: 0;
+            z-index: 800;
+            width: inherit;
+            height: inherit;
+            -webkit-transform: rotateX(-180deg);
+            -webkit-transform: rotateX(-180deg);
+            -webkit-transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+            -moz-transform: rotateX(-180deg);
+            -moz-transform-style: preserve-3d;
+            -moz-backface-visibility: hidden;
+            /* -- transition is the magic sauce for animation -- */
+            -o-transition: all 1s linear;
+            -ms-transition: all 1s linear;
+            -moz-transition: all 1s linear;
+            -webkit-transition: all 1s linear;
+            transition: all 1s linear;
+        }
+
+        .panel.flip .back {
+            z-index: 1000;
+            -webkit-transform: rotateX(0deg) rotateY(0deg);
+            -moz-transform: rotateX(0deg) rotateY(0deg);
+        }
+
+        .pad {
+            background-color: green;
+            width: 130px;
+            height: 130px;
+        }
+
+        .pad1 {
+            background-color: blue;
+            width: 130px;
+            height: 130px;
+        }
+
+        .verticleCenter {
+            padding-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel">
+        <div class="front">
+            <div class="pad1">
+                <div class="verticleCenter">
+                    <h3>Status: CHOSEN</h3>
+                    <h3>Awaiting: YOUR CHOICE<h3>
+                </div>
+            </div>
+        </div>
+        <div class="back">
+            <div class="pad">
+
+            </div>
+        </div>
+    </div>
+    <button id=button>flipper</button>
+    <button id=button2>flipper2</button>
+    <script>
+        $("#button").on("click", function () {
+            $('.panel').removeClass('flip');
+        });
+        $("#button2").on("click", function () {
+            $(".panel").addClass('flip');
+        });
+    </script>
+</body>
+
+</html>
